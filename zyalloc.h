@@ -35,7 +35,6 @@ typedef void (*zyfree_t)(void *ptr);
 
 #define ZYALLOC_OK (0)
 #define ZYALLOC_ENOMEM (-1)
-#define ZYALLOC_EINVAL (-2)
 
 /*
  * Functions
