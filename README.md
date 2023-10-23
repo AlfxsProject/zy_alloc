@@ -30,9 +30,11 @@ void zyfree(const zyalloc_t *alloc, void **ptr);
 
 ### zyalloc_construct()
 
-`zyalloc_construct` allocates a `zyalloc_t` data structure using `malloc` and stores the function pointers to `malloc`, `realloc`, and `free`.
+`zyalloc_construct` allocates a `zyalloc_t` data structure using `malloc` and stores the function pointers
+to `malloc`, `realloc`, and `free`.
 
-All function arguments must be non-null. It is undefined behavior to input a nonconforming implementation of `malloc`, `realloc`, or `free`.
+All function arguments must be non-null. It is undefined behavior to input a nonconforming implementation
+of `malloc`, `realloc`, or `free`.
 
 ### zyalloc_destruct()
 
@@ -48,7 +50,8 @@ All function arguments must be non-null.
 
 ## zyrealloc()
 
-`zyrealloc` calls the `realloc` function pointer in `alloc` using `size` and `*ptr` and assigns the result to `*ptr`. If the operation fails, `*ptr` is unchanged.
+`zyrealloc` calls the `realloc` function pointer in `alloc` using `size` and `*ptr` and assigns the result to `*ptr`. If
+the operation fails, `*ptr` is unchanged.
 
 All function arguments must be non-null.
 
