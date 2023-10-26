@@ -45,7 +45,7 @@ extern "C"
 {
 #endif
 
-    int zyalloc_construct(zyalloc_t **alloc, const zymalloc_t malloc, const zyrealloc_t realloc, const zyfree_t free)
+    int zyalloc_construct(zyalloc_t **alloc, zymalloc_t malloc, zyrealloc_t realloc, zyfree_t free)
         __attribute__((nonnull));
 
     void zyalloc_destruct(zyalloc_t **alloc) __attribute__((nonnull));

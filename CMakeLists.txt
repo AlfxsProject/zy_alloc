@@ -3,4 +3,6 @@ project(zyalloc C)
 
 set(CMAKE_C_STANDARD 23)
 
-add_library(zyalloc zyalloc.c)
+include_directories(src)
+
+add_library(zyalloc src/zyalloc.c)
