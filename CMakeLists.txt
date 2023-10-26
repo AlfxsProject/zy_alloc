@@ -4,5 +4,4 @@ project(zyalloc C)
 set(CMAKE_C_STANDARD 23)
 
 include_directories(src)
-
-add_library(zyalloc src/zyalloc.c)
+add_subdirectory(src)
