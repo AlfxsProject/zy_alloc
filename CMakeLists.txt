@@ -3,5 +3,8 @@ project(zyalloc C)
 
 set(CMAKE_C_STANDARD 23)
 
-include_directories(src)
-add_subdirectory(src)
+file(GLOB_RECURSE SOURCES LIST_DIRECTORIES true *.h *.c)
+
+set(SOURCES ${SOURCES})
+
+add_library(${CMAKE_PROJECT_NAME} STATIC ${SOURCES})
