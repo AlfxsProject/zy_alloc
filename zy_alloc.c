@@ -34,7 +34,7 @@ struct zy_alloc_s
 int zy_alloc_construct(zy_alloc_t **alloc, zy_malloc_t malloc, zy_realloc_t realloc, zy_free_t free)
 {
     *alloc = malloc(sizeof(zy_alloc_t));
-    if (*alloc != NULL)
+    if (*alloc != nullptr)
     {
         const zy_alloc_t alloc_init = {.malloc = malloc, .realloc = realloc, .free = free};
         memcpy((void *)*alloc, (const void *)&alloc_init, sizeof(zy_alloc_t));
@@ -46,14 +46,13 @@ int zy_alloc_construct(zy_alloc_t **alloc, zy_malloc_t malloc, zy_realloc_t real
 void zy_alloc_destruct(zy_alloc_t **alloc)
 {
     const zy_free_t free = (*alloc)->free;
-    free((void *)*alloc);
-    *alloc = NULL;
+    free((void **)alloc);
 }
 
 int zy_malloc(const zy_alloc_t *alloc, size_t size, void **ptr)
 {
     *ptr = alloc->malloc(size);
-    if (*ptr != NULL)
+    if (*ptr != nullptr)
     {
         return ZY_OK;
     }
@@ -63,7 +62,7 @@ int zy_malloc(const zy_alloc_t *alloc, size_t size, void **ptr)
 int zy_realloc(const zy_alloc_t *alloc, size_t size, void **ptr)
 {
     void *x_ptr = alloc->realloc(*ptr, size);
-    if (x_ptr != NULL)
+    if (x_ptr != nullptr)
     {
         *ptr = x_ptr;
         return ZY_OK;
@@ -74,5 +73,5 @@ int zy_realloc(const zy_alloc_t *alloc, size_t size, void **ptr)
 void zy_free(const zy_alloc_t *alloc, void **ptr)
 {
     alloc->free(*ptr);
-    *ptr = NULL;
+    *ptr = nullptr;
 }
