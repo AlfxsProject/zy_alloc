@@ -45,8 +45,12 @@ int zy_alloc_construct(zy_alloc_t **alloc, zy_malloc_t malloc, zy_realloc_t real
 
 void zy_alloc_destruct(zy_alloc_t **alloc)
 {
-    const zy_free_t free = (*alloc)->free;
-    free((void **)alloc);
+    if (*alloc != nullptr)
+    {
+        const zy_free_t free = (*alloc)->free;
+        free((void *)*alloc);
+        *alloc = nullptr;
+    }
 }
 
 int zy_malloc(const zy_alloc_t *alloc, size_t size, void **ptr)
