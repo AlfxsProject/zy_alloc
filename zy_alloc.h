@@ -21,20 +21,20 @@
  * Types
  */
 
-typedef struct zyalloc_s zyalloc_t;
+typedef struct zy_alloc_s zy_alloc_t;
 
-typedef void *(*zymalloc_t)(size_t size);
+typedef void *(*zy_malloc_t)(size_t size);
 
-typedef void *(*zyrealloc_t)(void *ptr, size_t size);
+typedef void *(*zy_realloc_t)(void *ptr, size_t size);
 
-typedef void (*zyfree_t)(void *ptr);
+typedef void (*zy_free_t)(void *ptr);
 
 /*
  * Constants
  */
 
-#define ZYALLOC_OK (0)
-#define ZYALLOC_ENOMEM (-1)
+#define ZY_OK (0)
+#define ZY_ENOMEM (-1)
 
 /*
  * Functions
@@ -45,16 +45,16 @@ extern "C"
 {
 #endif
 
-    int zyalloc_construct(zyalloc_t **alloc, zymalloc_t malloc, zyrealloc_t realloc, zyfree_t free)
-        __attribute__((nonnull));
+    __attribute__((nonnull)) int zy_alloc_construct(zy_alloc_t **alloc, zy_malloc_t malloc, zy_realloc_t realloc,
+                                                    zy_free_t free);
 
-    void zyalloc_destruct(zyalloc_t **alloc) __attribute__((nonnull));
+    __attribute__((nonnull)) void zy_alloc_destruct(zy_alloc_t **alloc);
 
-    int zymalloc(const zyalloc_t *alloc, size_t size, void **ptr) __attribute__((nonnull));
+    __attribute__((nonnull)) int zy_malloc(const zy_alloc_t *alloc, size_t size, void **ptr);
 
-    int zyrealloc(const zyalloc_t *alloc, size_t size, void **ptr) __attribute__((nonnull));
+    __attribute__((nonnull)) int zy_realloc(const zy_alloc_t *alloc, size_t size, void **ptr);
 
-    void zyfree(const zyalloc_t *alloc, void **ptr) __attribute__((nonnull));
+    __attribute__((nonnull)) void zy_free(const zy_alloc_t *alloc, void **ptr);
 
 #ifdef __cplusplus
 }

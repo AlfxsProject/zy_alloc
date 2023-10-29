@@ -13,63 +13,63 @@ zyalloc (-lzyalloc)
 ```C
 #include <zyalloc.h>
 
-typedef struct zyalloc_s zyalloc_t;
-typedef void *(*zymalloc_t)(size_t size);
-typedef void *(*zyrealloc_t)(void *ptr, size_t size);
-typedef void (*zyfree_t)(void *ptr);
+typedef struct zy_alloc_s zy_alloc_t;
+typedef void *(*zy_malloc_t)(size_t size);
+typedef void *(*zy_realloc_t)(void *ptr, size_t size);
+typedef void (*zy_free_t)(void *ptr);
 
-int zyalloc_construct(zyalloc_t **alloc, const zymalloc_t malloc,
-                      const zyrealloc_t realloc, const zyfree_t free);
-void zyalloc_destruct(zyalloc_t **alloc);
-int zymalloc(const zyalloc_t *alloc, size_t size, void **ptr);
-int zyrealloc(const zyalloc_t *alloc, size_t size, void **ptr);
-void zyfree(const zyalloc_t *alloc, void **ptr);
+int zy_alloc_construct(zy_alloc_t **alloc, const zy_malloc_t malloc,
+                      const zy_realloc_t realloc, const zy_free_t free);
+void zy_alloc_destruct(zy_alloc_t **alloc);
+int zy_malloc(const zy_alloc_t *alloc, size_t size, void **ptr);
+int zy_realloc(const zy_alloc_t *alloc, size_t size, void **ptr);
+void zy_free(const zy_alloc_t *alloc, void **ptr);
 ```
 
 ## DESCRIPTION
 
-### zyalloc_construct()
+### zy_alloc_construct()
 
-`zyalloc_construct` allocates a `zyalloc_t` data structure using `malloc` and stores the function pointers
+`zy_alloc_construct` allocates a `zy_alloc_t` data structure using `malloc` and stores the function pointers
 to `malloc`, `realloc`, and `free`.
 
 All function arguments must be non-null. It is undefined behavior to input a nonconforming implementation
 of `malloc`, `realloc`, or `free`.
 
-### zyalloc_destruct()
+### zy_alloc_destruct()
 
-`zyalloc_destruct` deallocates a `zyalloc_t` data structure and sets `*alloc` to `nullptr`.
+`zy_alloc_destruct` deallocates a `zy_alloc_t` data structure and sets `*alloc` to `nullptr`.
 
 Note that `alloc` must be non-null.
 
-### zymalloc()
+### zy_malloc()
 
-`zymalloc` calls the `malloc` function pointer in `alloc` using `size` and assigns the result to `*ptr`.
+`zy_malloc` calls the `malloc` function pointer in `alloc` using `size` and assigns the result to `*ptr`.
 
 All function arguments must be non-null.
 
-## zyrealloc()
+## zy_realloc()
 
-`zyrealloc` calls the `realloc` function pointer in `alloc` using `size` and `*ptr` and assigns the result to `*ptr`. If
+`zy_realloc` calls the `realloc` function pointer in `alloc` using `size` and `*ptr` and assigns the result to `*ptr`. If
 the operation fails, `*ptr` is unchanged.
 
 All function arguments must be non-null.
 
-## zyfree()
+## zy_free()
 
-`zyfree` calls the `free` function pointer in `alloc` using `*ptr` and sets `*ptr` to `nullptr`.
+`zy_free` calls the `free` function pointer in `alloc` using `*ptr` and sets `*ptr` to `nullptr`.
 
 All function arguments must be non-null.
 
 ## RETURN VALUE
 
-On success `zyalloc_construct`, `zymalloc`, and `zyrealloc` return `ZYALLOC_OK`. Otherwise an error code is returned.
+On success `zy_alloc_construct`, `zy_malloc`, and `zy_realloc` return `ZY_OK`. Otherwise an error code is returned.
 
 ## ERRORS
 
-`zyalloc_construct`, `zymalloc`, `zyrealloc` can fail with the following error.
+`zy_alloc_construct`, `zy_malloc`, `zy_realloc` can fail with the following error.
 
-**ZYALLOC_ENOMEM** Out of memory.
+**ZY_ENOMEM** Out of memory.
 
 ## NOTES
 
