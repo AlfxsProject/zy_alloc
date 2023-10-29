@@ -1,4 +1,4 @@
-# zyalloc
+# zy_alloc
 
 ## NAME
 
@@ -6,12 +6,12 @@ Allocator Abstraction Library.
 
 ## LIBRARY
 
-zyalloc (-lzyalloc)
+zy_alloc (-lzy_alloc)
 
 ## SYNOPSIS
 
 ```C
-#include <zyalloc.h>
+#include <zy_alloc.h>
 
 typedef struct zy_alloc_s zy_alloc_t;
 typedef void *(*zy_malloc_t)(size_t size);
@@ -50,7 +50,8 @@ All function arguments must be non-null.
 
 ## zy_realloc()
 
-`zy_realloc` calls the `realloc` function pointer in `alloc` using `size` and `*ptr` and assigns the result to `*ptr`. If
+`zy_realloc` calls the `realloc` function pointer in `alloc` using `size` and `*ptr` and assigns the result to `*ptr`.
+If
 the operation fails, `*ptr` is unchanged.
 
 All function arguments must be non-null.
@@ -63,7 +64,7 @@ All function arguments must be non-null.
 
 ## RETURN VALUE
 
-On success `zy_alloc_construct`, `zy_malloc`, and `zy_realloc` return `ZY_OK`. Otherwise an error code is returned.
+On success `zy_alloc_construct`, `zy_malloc`, and `zy_realloc` return `ZY_OK`; otherwise, an error code is returned.
 
 ## ERRORS
 
