@@ -70,7 +70,7 @@ On success `zy_alloc_construct`, `zy_malloc`, and `zy_realloc` return `ZY_OK`; o
 
 `zy_alloc_construct`, `zy_malloc`, `zy_realloc` can fail with the following error.
 
-**ZY_ENOMEM** Out of memory.
+**ZY_E_NOMEM** Out of memory.
 
 ## NOTES
 

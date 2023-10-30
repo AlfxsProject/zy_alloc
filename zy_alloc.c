@@ -40,7 +40,7 @@ int zy_alloc_construct(zy_alloc_t **alloc, zy_malloc_t malloc, zy_realloc_t real
         (*alloc)->free = free;
         return ZY_OK;
     }
-    return ZY_ENOMEM;
+    return ZY_E_NOMEM;
 }
 
 void zy_alloc_destruct(zy_alloc_t **alloc)
@@ -60,7 +60,7 @@ int zy_malloc(const zy_alloc_t *alloc, size_t size, void **ptr)
     {
         return ZY_OK;
     }
-    return ZY_ENOMEM;
+    return ZY_E_NOMEM;
 }
 
 int zy_realloc(const zy_alloc_t *alloc, size_t size, void **ptr)
@@ -71,7 +71,7 @@ int zy_realloc(const zy_alloc_t *alloc, size_t size, void **ptr)
         *ptr = x_ptr;
         return ZY_OK;
     }
-    return ZY_ENOMEM;
+    return ZY_E_NOMEM;
 }
 
 void zy_free(const zy_alloc_t *alloc, void **ptr)

@@ -33,8 +33,8 @@ typedef void (*zy_free_t)(void *ptr);
 #ifndef ZY_OK
 #define ZY_OK (0)
 #endif
-#ifndef ZY_ENOMEM
-#define ZY_ENOMEM (-1)
+#ifndef ZY_E_NOMEM
+#define ZY_E_NOMEM (-1)
 #endif
 
 /*
