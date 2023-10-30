@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 #include "zy_alloc.h"
-#include <string.h>
 
 /*
  * Types
@@ -22,9 +21,9 @@
 
 struct zy_alloc_s
 {
-    const zy_malloc_t malloc;
-    const zy_realloc_t realloc;
-    const zy_free_t free;
+    zy_malloc_t malloc;
+    zy_realloc_t realloc;
+    zy_free_t free;
 };
 
 /*
@@ -36,8 +35,9 @@ int zy_alloc_construct(zy_alloc_t **alloc, zy_malloc_t malloc, zy_realloc_t real
     *alloc = malloc(sizeof(zy_alloc_t));
     if (*alloc != nullptr)
     {
-        const zy_alloc_t alloc_init = {.malloc = malloc, .realloc = realloc, .free = free};
-        memcpy((void *)*alloc, (const void *)&alloc_init, sizeof(zy_alloc_t));
+        (*alloc)->malloc = malloc;
+        (*alloc)->realloc = realloc;
+        (*alloc)->free = free;
         return ZY_OK;
     }
     return ZY_ENOMEM;
